@@ -20,7 +20,7 @@ Route::group(
         'namespace' => 'App\Http\Controllers',
         'prefix' => 'auth'
     ],
-    function ($router) {
+    function () {
         Route::post('register', 'AuthController@register');
         Route::post('logout', 'AuthController@logout');
         Route::get('profile', 'AuthController@profile');
@@ -30,10 +30,23 @@ Route::group(
 
 Route::group(
     [
+        'middleware' => 'api',
+        'namespace' => 'App\Http\Controllers',
+        'prefix' => 'v1'
+    ],
+    function () {
+        Route::apiResource('mobil', 'MobilController');
+        Route::apiResource('kendaraan', 'KendaraanController');
+        Route::apiResource('motor', 'MotorController');
+    }
+);
+
+Route::group(
+    [
         'namespace' => 'App\Http\Controllers',
         'prefix' => 'auth'
     ],
-    function ($router) {
+    function () {
         Route::post('login', 'AuthController@login');
     }
 );

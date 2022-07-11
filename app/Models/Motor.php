@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Mobil extends Model
+class Motor extends Model
 {
     use HasFactory;
 
@@ -13,8 +13,8 @@ class Mobil extends Model
 
     protected $fillable = [
         'mesin',
-        'kepasitas_penumpang',
-        'tipe',
+        'tipe_suspensi',
+        'tipe_transmisi',
     ];
 
     protected $hidden = [

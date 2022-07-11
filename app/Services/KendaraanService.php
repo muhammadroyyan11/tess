@@ -2,14 +2,11 @@
 
 namespace App\Services;
 
-
+use App\Models\Kendaraan;
 use App\Repositories\KendaraanRepository;
-use Exception;
-use Illuminate\Contracts\Validation\Validator;
 
 class KendaraanService
 {
-
     protected $kendaraanRepository;
 
     public function __construct(KendaraanRepository $kendaraanRepository)
@@ -17,12 +14,23 @@ class KendaraanService
         $this->kendaraanRepository = $kendaraanRepository;
     }
 
-
-    public function getAll()
+    public function get()
     {
-        $kendaraan = $this->kendaraanRepository->getAll();
+        return $this->kendaraanRepository->get();
+    }
 
-        return $kendaraan;
-        // return response()->json($todos->toArray());
+    public function create($request)
+    {
+        $kendaraan = $this->kendaraanRepository->create($request->all());
+        $result = [];
+
+        if ($kendaraan) {
+            $result['status'] = 'sukses!';
+            $result['data'] = $kendaraan;
+        } else {
+            $result['status'] = 'galat';
+        }
+
+        return $result;
     }
 }
