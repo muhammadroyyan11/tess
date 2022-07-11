@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
-    }
+//    public function __construct()
+//    {
+//        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+//    }
 
     public function login(Request $request)
     {
@@ -68,7 +68,7 @@ class AuthController extends Controller
     {
         return response()->json($this->guard()->user());
     }
-    
+
     public function refresh(Request $request)
     {
         return $this->respondWithToken($this->guard()->refresh());
